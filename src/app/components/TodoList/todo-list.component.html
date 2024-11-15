@@ -1,0 +1,7 @@
+<ion-item>
+    <ion-label [ngClass]="{'line-through text-gray-500': task.completed}">
+        {{ task.text }}
+    </ion-label>
+    <ion-checkbox [(ngModel)]="task.completed" (ionChange)="updateTask(task)"></ion-checkbox>
+    <ion-button (click)="deleteTask(task)">Delete</ion-button>
+</ion-item>

@@ -1,13 +1,47 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
+import { Task } from '../../models/task.model';
+import { CommonModule } from '@angular/common';
+import { TodoHeaderComponent } from 'src/app/components/TodoHeader/todo-header.component';
+import { TodoInputComponent } from 'src/app/components/TodoInput/todo-input.component';
+import { TodoItemComponent } from 'src/app/components/TodoList/todo-list.component';
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  templateUrl: './home.page.html',
+  imports: [IonicModule, TodoHeaderComponent, TodoInputComponent, TodoItemComponent, CommonModule],
+  standalone: true,  
 })
 export class HomePage {
-  constructor() {}
+  tasks: Task[] = JSON.parse(localStorage.getItem('tasks') || '[]');
+
+  generateRandomId(): string {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+  }
+
+  addTask(taskText: string) {
+    this.tasks.push({ text: taskText, completed: false, id: this.generateRandomId() });
+    this.saveTasks();
+  }
+
+  updateTask(task: Task) {
+    const taskIndex = this.tasks.findIndex(t => t.id === task.id);
+    if (taskIndex !== -1) {
+      this.tasks[taskIndex] = { ...this.tasks[taskIndex], completed: !this.tasks[taskIndex].completed };
+      this.saveTasks();
+    }
+  }
+
+  deleteTask(task: Task) {
+    this.tasks = this.tasks.filter(t => t !== task);
+    this.saveTasks();
+  }
+
+  saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+  trackById(index: number, task: any): number {
+    return task.id;
+  }
 }
