@@ -1,15 +1,13 @@
-<app-todo-header></app-todo-header>
-
-<ion-content class="p-4">
-  <app-todo-input (addTaskEvent)="addTask($event)"></app-todo-input>
+<ion-content>
+  <div class="px-4 mt-4">
+    <app-todo-input (addTaskEvent)="addTask($event)"></app-todo-input>
+  </div>
+  <ion-list>
+    <app-todo-item
+      *ngFor="let task of tasks; trackBy: trackById "
+      [task]="task"
+      (deleteTaskEvent)="deleteTask(task)"
+      (updateTaskEvent)="updateTask(task)"
+    ></app-todo-item>
+  </ion-list>
 </ion-content>
-
-<ion-list>
-  <app-todo-item
-    *ngFor="let task of tasks; trackBy: trackById "
-    [task]="task"
-    (deleteTaskEvent)="deleteTask(task)"
-    (updateTaskEvent)="updateTask(task)"
-  ></app-todo-item>
-</ion-list>
-
