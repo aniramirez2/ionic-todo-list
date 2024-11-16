@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Task } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
-import { TodoHeaderComponent } from 'src/app/components/TodoHeader/todo-header.component';
 import { TodoInputComponent } from 'src/app/components/TodoInput/todo-input.component';
 import { TodoItemComponent } from 'src/app/components/TodoList/todo-list.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
-  imports: [IonicModule, TodoHeaderComponent, TodoInputComponent, TodoItemComponent, CommonModule],
+  imports: [IonicModule, TodoInputComponent, TodoItemComponent, CommonModule],
   standalone: true,  
 })
 export class HomePage {
@@ -20,7 +19,7 @@ export class HomePage {
   }
 
   addTask(taskText: string) {
-    this.tasks.push({ text: taskText, completed: false, id: this.generateRandomId() });
+    this.tasks.push({ name: taskText, completed: false, id: this.generateRandomId() });
     this.saveTasks();
   }
 

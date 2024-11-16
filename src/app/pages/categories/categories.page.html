@@ -1,0 +1,14 @@
+<ion-content>
+    <div class="px-4 mt-4">
+      <app-todo-input  (addTaskEvent)="addCategorie($event)" (updateObjectEvent)="updateCategorie($event)" [editableObject]="editableObject" ></app-todo-input>
+    </div>
+    <ion-list>
+      <app-todo-item
+        *ngFor="let cat of categories; trackBy: trackById "
+        [task]="cat"
+        (deleteTaskEvent)="deleteCategorie(cat)"
+        (updateTaskEvent)="editCategorie(cat)"
+        [isTaskList]="false"
+      ></app-todo-item>
+    </ion-list>
+  </ion-content>

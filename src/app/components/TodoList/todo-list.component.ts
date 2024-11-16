@@ -11,7 +11,8 @@ import { Task } from '../../models/task.model';
   imports: [IonicModule, FormsModule, CommonModule]
 })
 export class TodoItemComponent {
-  @Input() task: any = {}; 
+  @Input() task: any = {};
+  @Input() isTaskList: boolean = true;
   @Output() deleteTaskEvent = new EventEmitter<Task>();
   @Output() updateTaskEvent = new EventEmitter<Task>();
 
