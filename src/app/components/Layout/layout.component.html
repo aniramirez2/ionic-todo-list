@@ -1,0 +1,17 @@
+
+<ion-header>
+    <app-todo-header>
+        {{bannerText}}
+    </app-todo-header>
+</ion-header>
+<ion-content>
+    <nav class="nav-links">
+        <ion-item routerLink="/home">
+            <ion-label>Home</ion-label>
+        </ion-item>
+        <ion-item routerLink="/categories">
+            <ion-label>Categories</ion-label>
+        </ion-item>
+    </nav>
+    <router-outlet></router-outlet>
+</ion-content>
