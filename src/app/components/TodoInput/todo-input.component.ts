@@ -3,12 +3,13 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { Categorie } from 'src/app/models/categories.model';
 import { Task } from 'src/app/models/task.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-todo-input',
   templateUrl: './todo-input.component.html',
   standalone: true,
-  imports: [IonicModule, FormsModule],
+  imports: [IonicModule, FormsModule, CommonModule],
 })
 export class TodoInputComponent {
   @Input() editableObject: Task | Categorie | null = null;
