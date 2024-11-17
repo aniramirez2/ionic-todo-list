@@ -23,6 +23,7 @@ export class TodoSelectComponent {
     this.selectedValue = cat.detail.value
     if (this.selectedValue) {
       this.selectedItemEvent.emit(this.selectedValue);
+      this.selectedValue = null
     }
   }
 
