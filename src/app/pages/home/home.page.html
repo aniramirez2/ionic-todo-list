@@ -1,5 +1,7 @@
 <ion-content>
   <div class="px-4 mt-4">
+    <app-todo-select [selectItems]="categories"
+    (selectedItemEvent)="selectCategorie($event)">></app-todo-select>
     <app-todo-input (addTaskEvent)="addTask($event)"></app-todo-input>
   </div>
   <ion-list>
