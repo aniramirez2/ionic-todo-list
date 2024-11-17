@@ -1,27 +1,33 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { TodoHeaderComponent } from '../TodoHeader/todo-header.component';
+import { Component, OnInit } from '@angular/core';
+import { inject } from '@angular/core';  // Importa 'inject' para usarlo correctamente
 import { IonicModule } from '@ionic/angular';
+import { fetchAndActivate, getString } from '@angular/fire/remote-config';
+import { RemoteConfig } from '@angular/fire/remote-config';  // Asegúrate de tener RemoteConfig importado
+import { TodoHeaderComponent } from '../TodoHeader/todo-header.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
-  template: `
-    <ion-header>
-        <app-todo-header></app-todo-header>
-    </ion-header>
-    <ion-content>
-        <nav class="nav-links">
-            <ion-item routerLink="/home">
-                <ion-label>Home</ion-label>
-            </ion-item>
-            <ion-item routerLink="/categories">
-                <ion-label>Categories</ion-label>
-            </ion-item>
-        </nav>
-        <router-outlet></router-outlet>
-    </ion-content>
-  `,
   standalone: true,
-  imports: [RouterModule, TodoHeaderComponent, IonicModule],
+  templateUrl: './layout.component.html',
+  imports: [RouterModule, TodoHeaderComponent, IonicModule]
 })
-export class LayoutComponent {}
+export class LayoutComponent implements OnInit {
+  bannerText: string = '';
+
+  private remoteConfig = inject(RemoteConfig);
+
+  ngOnInit() {
+    this.loadRemoteConfig();
+  }
+
+  async loadRemoteConfig() {
+    try {
+      await fetchAndActivate(this.remoteConfig);
+      const remoteConfig = getString(this.remoteConfig, 'welcome_message')
+      this.bannerText = remoteConfig ? remoteConfig : 'Generic Welcome';
+    } catch (error) {
+      console.error('Error al obtener la configuración remota:', error);
+    }
+  }
+}
