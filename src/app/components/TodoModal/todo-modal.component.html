@@ -1,0 +1,27 @@
+
+<ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-title class="uppercase tracking-[0.06em]">Create Task</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <div class="my-16">
+      <ion-text class="text-indigo-500 font-thin text-center text-sm uppercase tracking-[0.06em]">
+        <h3>Create your task by selecting a category you previously added, entering the task's name, and clicking 'Add' to submit your task.</h3>
+      </ion-text>
+    </div>
+    <div class="px-4 mt-4">
+      <app-todo-select
+        [selectItems]="categories"
+        (selectedItemEvent)="selectCategorie($event)"
+      ></app-todo-select>
+
+      <app-todo-input
+        (addTaskEvent)="addTask($event)"
+      ></app-todo-input>
+    </div>
+  </ion-content>

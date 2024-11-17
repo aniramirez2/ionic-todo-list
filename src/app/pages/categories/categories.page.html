@@ -1,0 +1,28 @@
+<ion-content>
+    <div class="my-12">
+      <ion-text class="text-indigo-500 font-thin text-center text-sm uppercase tracking-[0.06em]">
+        <h3>Create your categorie by entering the category's name, and clicking 'Add' to submit your task.</h3>
+      </ion-text>
+    </div>
+    <div class="px-4 my-8">
+      <app-todo-input  (addTaskEvent)="addCategorie($event)" (updateObjectEvent)="updateCategorie($event)" [editableObject]="editableObject" ></app-todo-input>
+    </div>
+    <ion-title class="text-indigo-500 font-thin mt-14 text-center text-sm uppercase tracking-[0.06em]">
+      Your Categories
+    </ion-title>
+    <ion-list>
+      <app-todo-item
+        *ngFor="let cat of categories; trackBy: trackById "
+        [task]="cat"
+        (deleteTaskEvent)="deleteCategorie(cat)"
+        (updateTaskEvent)="editCategorie(cat)"
+        [isTaskList]="false"
+      ></app-todo-item>
+    </ion-list>
+    <div *ngIf="categories.length === 0">
+      <ion-img src="assets/empty.svg" class="mb-4"></ion-img>
+      <ion-text class="text-indigo-500 font-thin text-center text-sm uppercase tracking-[0.06em]">
+        <h3>Click in plus button to create your first task</h3>
+      </ion-text>
+    </div>
+  </ion-content>

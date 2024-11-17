@@ -1,0 +1,33 @@
+<ion-item class="flex items-center !important">
+    <!-- Grupo del checkbox y el texto -->
+    <div class="flex items-center gap-2 flex-grow" 
+    *ngIf="isTaskList" >
+      <ion-checkbox 
+        class="w-[10px]"
+        [(ngModel)]="task.completed" 
+        (ionChange)="updateTask(task)"
+        aria-labelledby="label-input"
+        justify="start"
+        labelPlacement="end">
+        <ion-label
+            id="label-input"
+            [ngClass]="{'line-through text-gray-500': task.completed && isTaskList}">
+            {{ task.name }} {{ task.categorie ? '- ' + task.categorie : '' }}
+        </ion-label>
+      </ion-checkbox>
+    </div>
+    <ion-label *ngIf="!isTaskList" 
+        id="label-input"
+        [ngClass]="{'line-through text-gray-500': task.completed && isTaskList}">
+        {{ task.name }} {{ task.categorie ? '- ' + task.categorie : '' }}
+    </ion-label>
+    
+    <ion-button class="ml-auto" (click)="deleteTask(task)" color="tertiary">
+        <ion-icon name="trash"></ion-icon>
+    </ion-button>
+  
+    <ion-button *ngIf="!isTaskList" class="ml-2" (click)="updateTask(task)" color="tertiary">
+        <ion-icon name="create-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+  

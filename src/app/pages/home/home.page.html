@@ -1,0 +1,34 @@
+<ion-content>
+  <ion-title class="text-indigo-500 font-thin mt-6 text-center text-sm uppercase tracking-[0.06em]">
+    Filter your tasks by categories
+  </ion-title>
+  <div class="px-4 my-5 w-full m-auto">
+    <app-todo-select
+      [selectItems]="categories"
+      (selectedItemEvent)="selectCategorie($event)"
+    ></app-todo-select>
+  </div>
+  <div class="w-full text-end">
+    <ion-button (click)="clearFilter()" fill="clear" size="small" *ngIf="selectedCategorie" class="text-indigo-500 font-thin mt-6 text-center text-sm">
+      Clear filter
+    </ion-button>
+  </div>
+
+  <ion-title class="text-indigo-500 font-thin mt-14 text-center text-sm uppercase tracking-[0.06em]">
+    Your tasks
+  </ion-title>
+  <ion-list>
+    <app-todo-item
+      *ngFor="let task of filteredTasks; trackBy: trackById"
+      [task]="task"
+      (deleteTaskEvent)="deleteTask(task)"
+      (updateTaskEvent)="updateTask(task)"
+    ></app-todo-item>
+  </ion-list>
+  <div *ngIf="filteredTasks.length === 0">
+    <ion-img src="assets/empty.svg" class="mb-4"></ion-img>
+    <ion-text class="text-indigo-500 font-thin text-center text-sm uppercase tracking-[0.06em]">
+      <h3>Click in plus button to create your first task</h3>
+    </ion-text>
+  </div>
+</ion-content>

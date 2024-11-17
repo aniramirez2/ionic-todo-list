@@ -1,0 +1,7 @@
+<ion-item>
+    <ion-label>Show an option</ion-label>
+    <ion-select (ionChange)="handleSelectionChange($event)">
+      <ion-select-option *ngFor="let item of selectItems" [value]="item">{{ item.name }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  

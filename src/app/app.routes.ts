@@ -1,13 +1,15 @@
 import { Routes } from '@angular/router';
+import { LayoutComponent } from './components/Layout/layout.component';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
-  {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    component: LayoutComponent, // El layout principal
+    children: [
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: 'home', loadComponent: () => import('./pages/home/home.page').then(m => m.HomePage) },
+      { path: 'categories', loadComponent: () => import('./pages/categories/categories.page').then(m => m.CategoriesPage) },
+    ],
   },
+  { path: '**', redirectTo: '/home' },
 ];

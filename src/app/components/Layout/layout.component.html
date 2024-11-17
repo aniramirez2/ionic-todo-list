@@ -1,0 +1,18 @@
+
+<ion-header>
+    <app-todo-header>
+        {{bannerText}}
+    </app-todo-header>
+</ion-header>
+<ion-content>
+    <router-outlet></router-outlet>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+    <ion-fab-button (click)="isCategoriesPage() ? goToHome() :goToCategories()" color="tertiary" class="mb-2">
+      <ion-icon [name]="isCategoriesPage() ? 'arrow-back-circle-outline' : 'duplicate-outline'"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="openTaskModal()" color="tertiary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

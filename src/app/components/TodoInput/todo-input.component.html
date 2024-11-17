@@ -1,0 +1,13 @@
+<ion-item>
+  <ion-input 
+    [(ngModel)]="inputValue" 
+    placeholder="Enter text..." 
+    clearInput>
+  </ion-input>
+  <ion-button
+    color="tertiary"
+    expand="block" 
+    (click)="editableObject ? handleUpdate() : handleAdd()">
+    {{ editableObject ? 'Update' : 'Add' }}
+  </ion-button>
+</ion-item>
