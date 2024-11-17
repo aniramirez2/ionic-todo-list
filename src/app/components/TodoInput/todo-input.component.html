@@ -4,7 +4,8 @@
     placeholder="Enter text..." 
     clearInput>
   </ion-input>
-  <ion-button 
+  <ion-button
+    color="tertiary"
     expand="block" 
     (click)="editableObject ? handleUpdate() : handleAdd()">
     {{ editableObject ? 'Update' : 'Add' }}
