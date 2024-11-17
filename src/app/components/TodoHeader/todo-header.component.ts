@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
@@ -7,4 +8,12 @@ import { IonicModule } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule],
 })
-export class TodoHeaderComponent {}
+export class TodoHeaderComponent {
+  constructor(
+    private router: Router
+  ) {}
+  
+  isCategoriesPage(): boolean {
+    return this.router.url === '/categories';
+  }
+}
